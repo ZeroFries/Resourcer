@@ -15,3 +15,16 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionDispatch::IntegrationTest
+  # Make the Capybara DSL available in all integration tests
+  include Capybara::DSL
+
+  Capybara.app = Resourcer::Application
+
+  teardown do
+    DatabaseCleaner.clean
+  	Capybara.reset_sessions! # Forget the (simulated) browser state
+  	Capybara.use_default_driver # reset the driver to the default incase its set to webkit in tests
+  end
+end

@@ -1,0 +1,17 @@
+<article class="topic-container">
+	<div class="topic-info">
+		<h2 class="topic-name"><%= topic.name %></h2>
+		<p class="topic-description"><%= topic.description %></p>
+	</div>
+	<% topic.skillz_hash.each do |name, sources| %>
+		<div class="skill-container">
+			<h3 class="skill-name"><%= name %></h3>
+			<ul class="source-list">
+			<% sources.each do |source| %>
+				<li><button class="source-info-opener" data-source-id=<%= source.id %>>I</button>
+					<%= link_to source.name, source.url, target: "_blank" %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+</article>

@@ -1,0 +1,8 @@
+<h1 class="streams-header">What do you want to know more about?</h1>
+<div class="streams-container">
+	<% @streams.each_with_index do |stream, i| %>
+		<article class="stream" id=<%= "bg-#{i}" %>>
+			<%= link_to stream.name, stream %>
+		</article>
+	<% end %>
+</div>
