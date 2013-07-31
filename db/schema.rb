@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730204327) do
+ActiveRecord::Schema.define(version: 20130731213028) do
 
   create_table "join_stream_topics", force: true do |t|
     t.integer  "stream_id"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20130730204327) do
   create_table "topics", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
