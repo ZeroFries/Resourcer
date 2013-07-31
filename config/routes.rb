@@ -1,11 +1,11 @@
 Resourcer::Application.routes.draw do
-  resources :users
-
   namespace :api do
     resources :sources
   end
 
   resources :streams
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root to: "streams#index"
 
