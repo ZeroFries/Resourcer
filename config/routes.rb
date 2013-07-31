@@ -1,5 +1,7 @@
 Resourcer::Application.routes.draw do
-  resources :sources
+  namespace :api do
+    resources :sources
+  end
 
   resources :streams
 

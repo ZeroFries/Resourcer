@@ -22,6 +22,11 @@ class ActionDispatch::IntegrationTest
 
   Capybara.app = Resourcer::Application
 
+  setup do
+    @stream = FactoryGirl.create :stream
+    @topic = @stream.topics.create name: "HTML"
+  end
+
   teardown do
     DatabaseCleaner.clean
   	Capybara.reset_sessions! # Forget the (simulated) browser state

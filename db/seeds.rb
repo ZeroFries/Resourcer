@@ -7,7 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 ror = Stream.create name: "Ruby on Rails"
 topic = Topic.create name: "HTML"
+topic2 = Topic.create name: "Ruby", description: "Beauty"
 joiner = ror.join_stream_topics.create topic: topic
+joiner2 = ror.join_stream_topics.create topic: topic2
 
 wiki = Source.create(name: "Wikipedia", category: "Encyclopedia", price: 0,
 url: "http://www.wikipedia.org/",
@@ -19,3 +21,4 @@ links to guide the user to related pages with additional information.",
 image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png")
 
 skill = topic.skills.create name: "Beginner", source: wiki
+skill2 = topic2.skills.create name: "Advanced", source: wiki

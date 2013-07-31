@@ -11,6 +11,7 @@ class Topic < ActiveRecord::Base
 		hash = {}
 		self.skills.each do |skill|
 			hash[skill.name] = [] if hash[skill.name].nil?
+			# access sources by skill name
 			hash[skill.name] << Source.find(skill.source_id)
 		end
 		hash
