@@ -18,4 +18,20 @@ $(document).ready( ->
 			$('.source-summary').text(data.summary)
 		)
 	)
+
+	# show source close
+	showSourceClose = ->
+		$('.page-cover').removeClass('fade')
+		$('.source-show-container').removeClass('show')
+		$('.source-show-container').addClass('hide')
+		$('.source-img').attr('src', '')
+		$('.source-name').html('')
+		$('.source-info').html('')
+	$('.source-show-close').click( ->
+		showSourceClose()
+	)
+	$('body').keydown((e) ->
+		showSourceClose() if e.keyCode == 27
+	)
+
 )

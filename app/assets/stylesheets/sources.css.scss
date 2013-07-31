@@ -20,18 +20,32 @@ html{
 	opacity: 1;
 	z-index: 42;
 	position: fixed;
+	font-size: 1em;
 	left: 25%;
 	top: 25%;
-	transition: 0.8s linear;
+	transition: 0.5s linear;
+	& .source-show-close{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	& img{
+		height: 8em;
+		wodth: 8em;;
+	}
 }
 
 .source-show-container.hide{
-	width: 1;
-	max-height: 1;
+	width: 1px;
+	height: 1px;
+	font-size: 1px;
 	opacity: 0;
 	z-index: -4;
 	position: fixed;
 	left: 25%;
 	top: 25%;
-	transition: 0.8s linear;
+	& img{
+		height: 1px;
+		wodth: 1px;
+	}
 }
