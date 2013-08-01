@@ -10,7 +10,7 @@ $(document).ready( ->
 		id = $(this).data('source-id')
 		# ajax in the source data
 		$.ajax(url: "/api/sources/" + String(id)).done((data) ->
-			console.log data
+			# fill promise objects with data
 			$('.source-img').attr('src', data.image_url)
 			$('.source-name').append("<a href=" + data.url + " target='_blank'>" + data.name + "</a>")
 			price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'

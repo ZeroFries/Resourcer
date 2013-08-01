@@ -11,6 +11,13 @@
 <nav class="nav-top-container">
 </nav>
 
+<% if flash[:notice] || flash[:alert] %>
+	<div class="notice">
+		<%= flash[:notice] if flash[:notice] %>
+		<%= flash[:alert] if flash[:alert] %>
+	</div>
+<% end %>
+
 <div class="page-container">
 	<%= yield %>
 </div>

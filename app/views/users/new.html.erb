@@ -1,0 +1,9 @@
+<p class="pitch-text">Sign up is quick, easy, and absolutely free. It lets you use special features like bookmarking, rating and commenting on resources, as well as adding personal notes. Keep everything you need to know in one place by creating your account now:</p>
+
+<%= form_for @user do |f| %>
+	<%= f.text_field :name, placeholder: "Username" %>
+	<%= f.text_field :email, placeholder: "Valid Email Address" %>
+	<%= f.text_field :password, placeholder: "Password" %>
+	<%= f.text_field :password_confirmation, placeholder: "Confirm Password" %>
+	<%= f.submit value: "Sign Up" %>
+<% end %>
