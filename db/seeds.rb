@@ -18,5 +18,7 @@ the Hawaiian word wiki, meaning \"quick\") and encyclopedia. Wikipedia's article
 links to guide the user to related pages with additional information.",
 image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png")
 
-skill = topic.skills.create name: "Beginner", source: wiki
-skill2 = topic2.skills.create name: "Advanced", source: wiki
+10.times do |i|
+	Skill.create topic: topic, source: wiki, name: "Skill #{i}"
+	Skill.create topic: topic2, source: wiki, name: "Skill #{i}"
+end

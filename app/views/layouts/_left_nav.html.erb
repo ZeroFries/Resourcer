@@ -1,0 +1,7 @@
+<nav class="left-nav">
+	<ul>
+	<% categories.each_with_index do |category, i| %>
+		<li><%= link_to category, "##{category.gsub(' ', '')}" %></li>
+	<% end %>
+	<ul>
+</nav>

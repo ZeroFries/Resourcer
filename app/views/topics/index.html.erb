@@ -1,24 +1,34 @@
 <header class="topics-header">
-	<h2 class="topic-title">What do you want to know more about?</h2>
+	<h1 class="topic-title">What do you want to know more about?</h1>
 </header>
 
-<nav class="topic-nav">
-	<ul>
-	<% @topics.each_with_index do |topic, i| %>
-		<li><%= link_to topic.name, "#topic_#{i}" %></li>
-	<% end %>
-	<ul>
-</nav>
 
+<!-- Left topics nav-->
+<%= render "layouts/left_nav", categories: @topic_names %>
+
+<!-- Show all topics -->
 <div class="topics-container">
 	<% @topics.each_with_index do |topic, i| %>
-		<article class="topic" id=<%= "bg-#{i}" %> name=<%= "topic_#{i}" %>>
-			<button class='topic-info'>I</button><%= link_to topic.name, topic %>
+		<article class="topic" id=<%= topic.name.gsub(' ', '') %>>
+			<button class='topic-info'>I</button>
+			<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
 			<ul class="skills-container">
-				<% topic.skills.each do |skill| %>
-					<%= link_to skill.name, "/topics/#{topic.id}/#skill.name" %>
+				<% topic.skillz_hash.keys.each do |skill_name| %>
+					<li><%= link_to skill_name, "/topics/#{topic.id}/##{skill_name.gsub(' ', '')}" %></li>
 				<% end %>
 			</ul>
 		</article>
 	<% end %>
+</div>
+
+<!-- Learning Path -->
+	<!-- render the learning path partial -->
+
+<div class="page-cover">
+</div>
+
+<div class="topic-info-container hide">
+	<button class="topic-info-close">X</button>
+	<h2 class="topic-name"></h2>
+	<p class="topic-summary"></p>
 </div>
