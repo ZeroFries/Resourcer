@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731213028) do
+ActiveRecord::Schema.define(version: 20130801173907) do
+
+  create_table "bookmarks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bookmarks", ["source_id"], name: "index_bookmarks_on_source_id"
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
 
   create_table "join_stream_topics", force: true do |t|
     t.integer  "stream_id"

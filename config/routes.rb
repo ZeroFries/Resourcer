@@ -1,13 +1,16 @@
 Resourcer::Application.routes.draw do
   namespace :api do
-    resources :sources
+    resources :sources, only: [:show]
+    resources :topics, only: [:show]
+    resources :bookmarks, only: [:new, :create]
   end
 
-  resources :streams
+  resources :topics
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :bookmarks, only: [:index, :destroy]
 
-  root to: "streams#index"
+  root to: "topics#index"
   get "/signup", to: "users#new"
 
   # The priority is based upon order of creation: first created -> highest priority.

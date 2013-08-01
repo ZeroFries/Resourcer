@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	# associations
+	has_many :bookmarks
+	has_many :sources, through: :bookmarks
 	
 	# validations
 	has_secure_password

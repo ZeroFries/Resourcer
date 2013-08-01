@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find session[:user_id] unless session[:user_id].nil?
   end
 
-  helper_method :current_user
+  def force_login
+  	redirect_to "/login" if current_user.nil?
+  end
+
+  helper_method :current_user, :force_login
 end

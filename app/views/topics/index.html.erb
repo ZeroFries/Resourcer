@@ -1,0 +1,24 @@
+<header class="topics-header">
+	<h2 class="topic-title">What do you want to know more about?</h2>
+</header>
+
+<nav class="topic-nav">
+	<ul>
+	<% @topics.each_with_index do |topic, i| %>
+		<li><%= link_to topic.name, "#topic_#{i}" %></li>
+	<% end %>
+	<ul>
+</nav>
+
+<div class="topics-container">
+	<% @topics.each_with_index do |topic, i| %>
+		<article class="topic" id=<%= "bg-#{i}" %> name=<%= "topic_#{i}" %>>
+			<button class='topic-info'>I</button><%= link_to topic.name, topic %>
+			<ul class="skills-container">
+				<% topic.skills.each do |skill| %>
+					<%= link_to skill.name, "/topics/#{topic.id}/#skill.name" %>
+				<% end %>
+			</ul>
+		</article>
+	<% end %>
+</div>
