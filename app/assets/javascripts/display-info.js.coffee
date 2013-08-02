@@ -13,14 +13,16 @@ $(document).ready( ->
 		$.ajax(url: "/api/" + type + "/" + id).done((data) ->
 			# fill promise objects with data
 			if type == "sources"
+				$('.info-container').css("width", "50%").css("min-height", "25em").css("left", "25%").css("top", "25%").css("font-size", "16px")
 				$('.source-img').attr('src', data.image_url)
 				$('.source-name').append("<a href=" + data.url + " target='_blank'>" + data.name + "</a>")
 				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
 				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
 				$('.source-summary').text(data.summary)
 			else
-				$('.topic-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
-				$('.topic-description').text(data.description)
+				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px")
+				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
+				$('.info-description').text(data.description)
 		)
 	)
 
@@ -29,11 +31,12 @@ $(document).ready( ->
 		$('.page-cover').removeClass('fade')
 		$('.info-container').removeClass('show')
 		$('.info-container').addClass('hide')
-		$('.topic-name').html('')
-		$('.topic-description').text('')
+		$('.info-name').html('')
+		$('.info-description').text('')
 		$('.source-img').attr('src', '')
 		$('.source-name').html('')
 		$('.source-info').html('')
+		$('.info-container').css("width", "1px").css("min-height", "1px").css("left", "50%").css("top", "50%").css("font-size", "1px")
 	$('.info-close').click( ->
 		infoBoxClose()
 	)

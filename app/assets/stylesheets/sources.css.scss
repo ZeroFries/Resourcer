@@ -23,7 +23,7 @@ html{
 	font-size: 1em;
 	left: 25%;
 	top: 25%;
-	transition: 0.5s linear;
+	transition: 0.35s linear;
 	& .info-close{
 		position: absolute;
 		top: 0;
@@ -31,7 +31,7 @@ html{
 	}
 	& img{
 		height: 8em;
-		wodth: 8em;;
+		width: 8em;;
 	}
 }
 
@@ -46,6 +46,6 @@ html{
 	top: 50%;
 	& img{
 		height: 1px;
-		wodth: 1px;
+		width: 1px;
 	}
 }
