@@ -15,4 +15,6 @@ class User < ActiveRecord::Base
 	before_create do
 	  self.email.downcase
 	end
+
+	# methods to compute progress
 end
