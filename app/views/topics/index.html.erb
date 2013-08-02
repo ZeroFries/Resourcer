@@ -10,7 +10,7 @@
 <div class="topics-container">
 	<% @topics.each_with_index do |topic, i| %>
 		<article class="topic" id=<%= topic.name.gsub(' ', '') %>>
-			<button class='topic-info'>I</button>
+			<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
 			<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
 			<ul class="skills-container">
 				<% topic.skillz_hash.keys.each do |skill_name| %>
@@ -27,8 +27,8 @@
 <div class="page-cover">
 </div>
 
-<div class="topic-info-container hide">
-	<button class="topic-info-close">X</button>
+<div class="info-container hide">
+	<button class="info-close" data-type="topics">X</button>
 	<h2 class="topic-name"></h2>
-	<p class="topic-summary"></p>
+	<p class="topic-description"></p>
 </div>

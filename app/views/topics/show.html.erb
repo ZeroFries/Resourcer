@@ -1,3 +1,8 @@
+<!-- Header -->
+<header class="topics-header">
+	<h1 class="topic-title"><%= @topic.name %></h1>
+</header>
+
 <!-- Skills nav -->
 <%= render "layouts/left_nav", categories: @skills.keys %>
 
@@ -9,7 +14,7 @@
 			<ul class="sources-container">
 				<% sources.each do |source| %>
 					<li>
-						<button class="source-info-opener" data-source-id=<%= source.id %>>I</button>
+						<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
 						<%= link_to source.name, source.url, target: "_blank" %>
 					</li>
 				<% end %>
@@ -23,8 +28,8 @@
 <div class="page-cover">
 </div>
 
-<div class="source-show-container hide">
-	<button class="source-show-close">X</button>
+<div class="info-container hide">
+	<button class="info-close" data-type="sources">X</button>
 	<img class="source-img" alt=""></img>
 	<h2 class="source-name"></h2>
 	<div class="source-info"></div>

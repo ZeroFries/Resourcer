@@ -12,7 +12,7 @@ html{
 	background-color: rgba(20, 18, 18, 0.81);
 }
 
-.source-show-container.show{
+.info-container.show{
 	background-color: white;
 	width: 50%;
 	min-height: 25em;
@@ -24,7 +24,7 @@ html{
 	left: 25%;
 	top: 25%;
 	transition: 0.5s linear;
-	& .source-show-close{
+	& .info-close{
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -35,7 +35,7 @@ html{
 	}
 }
 
-.source-show-container.hide{
+.info-container.hide{
 	width: 1px;
 	height: 1px;
 	font-size: 1px;
