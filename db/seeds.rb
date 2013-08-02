@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-topic = Topic.create name: "HTML"
+topic = Topic.create name: "HTML", description: "Mark up language"
 topic2 = Topic.create name: "Ruby", description: "Beauty"
 
 wiki = Source.create(name: "Wikipedia", category: "Encyclopedia", price: 0,

@@ -17,6 +17,12 @@ class SourceTest < ActiveSupport::TestCase
   	assert !@source.save
   end
 
+  test "sources must have a unique url" do
+    @source2 = FactoryGirl.build :source
+
+    assert !@source2.save
+  end
+
   test "sources must have a category" do
   	@source.category = ""
 
@@ -47,10 +53,8 @@ class SourceTest < ActiveSupport::TestCase
 
   test "sources have a topic" do
     @topic = FactoryGirl.create :topic
-    @skill = FactoryGirl.create :skill
-    @skill.topic = @topic
-    @skill.source = @source
-    @skill.save
+    @source.url = "whatsup.com"
+    @skill = FactoryGirl.create :skill, source: @source, topic: @topic
     assert_equal @source.topics.first.name, "HTML"
   end
 end

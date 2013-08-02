@@ -1,15 +1,7 @@
 FactoryGirl.define do
-	factory :stream do
-		name "Ruby on Rails"
-	end
-
-	factory :join_stream_topic do
-		stream
-		topic
-	end
-
 	factory :topic do
 		name "HTML"
+		description "Markup language"
 	end
 
 	factory :skill do

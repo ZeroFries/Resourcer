@@ -6,7 +6,8 @@ class Source < ActiveRecord::Base
 	has_many :topics, through: :skills
 
 	# validations
-	validates :url, :name, :summary, :category, presence: true
+	validates :name, :summary, :category, presence: true
+	validates :url, presence: true, uniqueness: { case_sensitive: false }
 	validates :price, presence: true, inclusion: (0..4)
 
 	# call backs

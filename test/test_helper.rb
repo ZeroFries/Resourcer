@@ -23,8 +23,9 @@ class ActionDispatch::IntegrationTest
   Capybara.app = Resourcer::Application
 
   setup do
-    @stream = FactoryGirl.create :stream
-    @topic = @stream.topics.create name: "HTML"
+    @topic = FactoryGirl.create :topic
+    @source = FactoryGirl.create :source
+    @skill = Skill.create topic: @topic, source: @source, name: "Beginner"
   end
 
   teardown do

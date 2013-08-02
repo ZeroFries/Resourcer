@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-	# properties: name
+	# properties: name, description
 
 	# associations
 	has_many :join_stream_topics
@@ -7,6 +7,12 @@ class Topic < ActiveRecord::Base
 	has_many :skills
 	has_many :sources, through: :skills
 
+	# validations
+	validates :name, :description, presence: true
+
+	# callbacks
+
+	# custom methods
 	def skillz_hash
 		hash = {}
 		self.skills.each do |skill|
