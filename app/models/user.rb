@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 	# associations
 	has_many :bookmarks
 	has_many :sources, through: :bookmarks
-	has_many :learning_paths
 	
 	# validations
 	has_secure_password
@@ -12,5 +11,8 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: { with: valid_email }, uniqueness: { case_sensitive: false }
 	validates :password, presence: true, length: { minimum: 5 }, on: :create
 
-	before_create { |user| user.email.downcase! }
+	# call backs
+	before_create do
+	  self.email.downcase
+	end
 end
