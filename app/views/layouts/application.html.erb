@@ -9,6 +9,15 @@
 <body>
 
 <nav class="nav-top-container">
+	<h1 class="logo"><%= link_to "LOGO", root_url %></h1>
+	<ul class="nav-links">
+		<% if current_user %>
+			<li><%= link_to "Logout", session_path(1), method: :delete %></li>
+		<% else %>
+			<li><%= link_to "Login", "/login" %></li>
+			<li><%= link_to "Sign Up", new_user_path %></li>
+		<% end %>
+	</ul>
 </nav>
 
 <% if flash[:notice] || flash[:alert] %>

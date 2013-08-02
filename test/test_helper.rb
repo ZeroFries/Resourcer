@@ -33,4 +33,8 @@ class ActionDispatch::IntegrationTest
   	Capybara.reset_sessions! # Forget the (simulated) browser state
   	Capybara.use_default_driver # reset the driver to the default incase its set to webkit in tests
   end
+
+  def setup_signed_up_user
+    @user = FactoryGirl.create :user
+  end
 end

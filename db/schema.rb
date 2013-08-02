@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801173907) do
+ActiveRecord::Schema.define(version: 20130802204553) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +32,39 @@ ActiveRecord::Schema.define(version: 20130801173907) do
 
   add_index "join_stream_topics", ["stream_id"], name: "index_join_stream_topics_on_stream_id"
   add_index "join_stream_topics", ["topic_id"], name: "index_join_stream_topics_on_topic_id"
+
+  create_table "learning_paths", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "learning_paths", ["user_id"], name: "index_learning_paths_on_user_id"
+
+  create_table "nodes", force: true do |t|
+    t.integer  "topic_id"
+    t.integer  "skill_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "learning_path_id"
+  end
+
+  add_index "nodes", ["learning_path_id"], name: "index_nodes_on_learning_path_id"
+  add_index "nodes", ["skill_id"], name: "index_nodes_on_skill_id"
+  add_index "nodes", ["topic_id"], name: "index_nodes_on_topic_id"
+
+  create_table "requirements", force: true do |t|
+    t.integer  "node_id"
+    t.integer  "completed"
+    t.integer  "goal"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "requirements", ["node_id"], name: "index_requirements_on_node_id"
 
   create_table "skills", force: true do |t|
     t.string   "name"
