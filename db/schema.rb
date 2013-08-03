@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130802233933) do
+ActiveRecord::Schema.define(version: 20130803202848) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20130802233933) do
   create_table "requirements", force: true do |t|
     t.integer "node_id"
     t.integer "source_id"
+    t.integer "order"
   end
 
   create_table "skills", force: true do |t|
