@@ -4,6 +4,7 @@ class Node < ActiveRecord::Base
   belongs_to :skill
   belongs_to :learning_path
   has_many :requirements
+  has_many :sources, through: :requirements
 
   # validations
 

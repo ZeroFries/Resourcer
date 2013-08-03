@@ -3,6 +3,7 @@ Resourcer::Application.routes.draw do
     resources :sources, only: [:show]
     resources :topics, only: [:show]
     resources :bookmarks, only: [:new, :create]
+    resources :completed_sources, only: [:create, :destroy]
   end
 
   resources :topics
