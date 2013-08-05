@@ -16,6 +16,8 @@ class SessionsController < ApplicationController
 			session[:user_id] = @user.id
 			session[:return_to].nil? ? redirect_to(root_path) : redirect_to(session[:return_to])
 			session[:return_to] = nil
+			# temp learning path testing
+			@user.create_current_learning_path learning_path: LearningPath.first
 		else
 			flash.now[:error] = "Wrong login details"
 			@user = User.new

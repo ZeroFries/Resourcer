@@ -3,7 +3,7 @@ class Node < ActiveRecord::Base
   belongs_to :topic
   belongs_to :skill
   belongs_to :learning_path
-  has_many :requirements
+  has_many :requirements, dependent: :destroy
   has_many :sources, through: :requirements
 
   # validations

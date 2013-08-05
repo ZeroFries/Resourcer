@@ -4,6 +4,7 @@ Resourcer::Application.routes.draw do
     resources :topics, only: [:show]
     resources :bookmarks, only: [:new, :create]
     resources :completed_sources, only: [:create, :destroy]
+    resources :current_learning_path, only: [:create]
   end
 
   resources :topics

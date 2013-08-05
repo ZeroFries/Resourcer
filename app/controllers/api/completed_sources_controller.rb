@@ -1,5 +1,6 @@
 class Api::CompletedSourcesController < ApplicationController
 	respond_to :json
+	before_filter :force_login
 
 	def create
 		@user = current_user

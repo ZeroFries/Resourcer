@@ -1,0 +1,25 @@
+<aside class="learning_path-container">
+	<button class="learning_path-choose">Select a learning path</button>
+
+	<% path = current_user.current_learning_path.learning_path %>
+	<% if path %>
+		<% completed_sources = current_user.completed_path_sources(path) %>
+		<% completed_nodes = current_user.completed_path_nodes(path) %>
+		<div class="current_path-container">
+			<h2 class="current_path-title">path.name</h2>
+			<% path.nodes.each do |node| %>
+				<div class=<%= completed_nodes.include?(node) ? "node complete" : "node" %>>
+					<%= link_to node.topic.name, topic_path(node.topic) %>: 
+					<%= link_to node.skill.name, "/topics/#{node.topic.id}/##{node.skill.name.gsub(' ', '')}" %>
+					<ul>
+						<% node.requirements.each do |requirement| %>
+							<li class=<%= completed_sources.include?(requirement.source) ? "requirement complete" : "requirement" %>>
+									<%= requirement.source.name %>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</aside>

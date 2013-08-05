@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :bookmarks
 	has_many :sources, through: :bookmarks
 	has_many :completed_sources
+	has_one :current_learning_path
 	
 	# validations
 	has_secure_password
