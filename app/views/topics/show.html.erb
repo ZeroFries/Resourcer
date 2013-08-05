@@ -23,6 +23,15 @@
 		<% end %>
 </div>
 
+<!-- Learning Path -->
+<% if current_user %>
+	<%= render "learning_path/learning_path" %>
+<% else %>
+<aside class="learning_path-container">
+	<button class="learning_path-choose"><%= link_to "Select a learning path", "/login" %></button>
+</aside>
+<% end %>
+
 <!-- Flash info box skeleton -->
 
 <div class="page-cover">
