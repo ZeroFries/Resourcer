@@ -41,4 +41,8 @@ class UserTest < ActiveSupport::TestCase
 	test "authenticates with valid pw" do
 		assert @user.authenticate("password")
 	end
+
+	test "user can progress on a learning path" do
+		@learning_path = FactoryGirl.create :learning_path
+	end
 end

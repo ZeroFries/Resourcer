@@ -32,8 +32,10 @@ class UserFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "can login with username" do
+    setup_signed_up_user
 
     # can login with username instead
+    visit "/"
     visit "/login"
 
     fill_in "user[email]", with: "ZeroFries"

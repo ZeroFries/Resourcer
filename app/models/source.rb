@@ -4,6 +4,9 @@ class Source < ActiveRecord::Base
 	# associations
 	has_many :skills
 	has_many :topics, through: :skills
+	has_many :requirements
+	has_many :nodes, through: :requirements
+	has_many :learning_paths, through: :nodes
 
 	# validations
 	validates :name, :summary, :category, presence: true

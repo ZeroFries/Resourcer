@@ -1,6 +1,6 @@
 <%= form_for @user, url: sessions_path, html: { method: :post } do |f| %>
 	<%= f.text_field :email, placeholder: "Email or username" %>
-	<%= f.text_field :password, placeholder: "Password" %>
+	<%= f.password_field :password, placeholder: "Password" %>
 	<% if flash[:error] %>
 		<div class="errors">
 			<%= flash[:error] %>
