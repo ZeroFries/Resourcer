@@ -1,5 +1,5 @@
-<nav class="left-nav">
-	<ul>
+<nav class="left-nav bs-sidebar affix">
+	<ul class="nav bs-sidenav">
 	<% categories.each_with_index do |category, i| %>
 		<li><%= link_to category, "##{category.gsub(' ', '')}" %></li>
 	<% end %>
