@@ -1,18 +1,20 @@
 <!-- Header -->
-<header class="topics-header">
-	<h1 class="topic-title"><%= @topic.name %></h1>
+<header class="section-block bg-brown2">
+	<div class="container">
+		<h1 class="topic-title"><%= @topic.name %></h1>
+		<p>Global CSS settings, fundamental HTML elements styled and enhanced with extensible classes, and an advanced grid system.</p>
+	</div>
 </header>
 
 <!-- Skills nav -->
-<div class="col-lg-3 sidebar">
+<div class="col-lg-2">
 	<%= render "layouts/left_nav", categories: @skills.keys %>
 </div>
 <!-- Show all skills -->
-<div class="col-lg-9">
+<div class="col-lg-10">
 	<div class="skills-container">
 		<% @skills.each do |skill_name, sources| %>
-
-			<article class="skill" id=<%= skill_name.gsub(' ', '') %>>
+			<article class="skill section-block col-lg-6" id=<%= skill_name.gsub(' ', '') %>>
 				<h2 class="skill-name"><%= skill_name %></h2>
 				<ul class="sources-container">
 					<% sources.each do |source| %>

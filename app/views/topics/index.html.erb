@@ -1,17 +1,19 @@
-<header class="topics-header">
-	<h1 class="topic-title">What do you want to know more about?</h1>
+<header class="topics-header section-block bg-brown2">
+	<div class="container">
+		<h1 class="topic-title">What do you want to know more about?</h1>
+	</div>
 </header>
 
 
 <!-- Left topics nav-->
-<div class="col-lg-3">
+<div class="col-lg-2">
 	<%= render "layouts/left_nav", categories: @topic_names %>
 </div>
 <!-- Show all topics -->
-<div class="col-lg-9">
-	<div class="topics-container">
+<div class="col-lg-10">
+	<div class="topics-container skills-container">
 		<% @topics.each_with_index do |topic, i| %>
-			<div class="topic" id=<%= topic.name.gsub(' ', '') %>>
+			<div class="topic section-block col-lg-6" id=<%= topic.name.gsub(' ', '') %>>
 				<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
 				<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
 				<ul class="skills-container">

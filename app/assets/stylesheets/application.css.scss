@@ -14,62 +14,20 @@
 
 @import "twitter/bootstrap";
 
+.social-icons img{
+  height: 30px;
+  width: 30px;
+}
 
-
-// .social-icons img{
-//   height: 30px;
-//   width: 30px;
-// }
-
-// .social-icons{
-//   position: absolute;
-//   top: 26%;
-//   right: 5%;
-// }
-
-
-// .section-block p{
-//   height: 28%;
-// }
-
-// .main p{
-//   height: 15%;
-// }
-
-// .container {
-//   max-width: 660px;
-//   background: lightgrey;
-// }
-// section {
-//   float: left;
-//   margin: 1.51515151%;   /*  10px ÷ 660px = .01515151 */
-//   width: 63.63636363%;   /* 420px ÷ 660px = .63636363 */  
-//   background: lightgreen;
-// }
-// aside {
-//   float: right;
-//   margin: 1.51515151%;   /*  10px ÷ 660px = .01515151 */
-//   width: 30.30303030%;   /* 200px ÷ 660px = .30303030 */
-//   background: orange;
-// }
-
-// li {
-//   font-style: bold;
-//   list-style: none;
-//   height: 1.2em;
-//   width: 100%;
-//   padding: 6px 12px;
-//   margin: 5px 0 0 -35px;
-//   border-radius: 2px;
-// }
-
-
-
-
-// a{
-//   color: white;
-//   font-weight: 100;
-// }
+.social-icons{
+  position: absolute;
+  top: 26%;
+  right: 5%;
+}
+a{
+  color: white;
+  font-weight: 100;
+}
 
 // a:hover{
 //   text-decoration: none;
