@@ -1,0 +1,16 @@
+.sidebar{
+  background: lightgrey;
+  border-left: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
+}
+
+.sidebar a{
+  color: rgba(34,34,38,1);
+  padding: 15px 0;
+  font-weight: 200;
+  width: 100%;
+}
+
+.sidebar a:hover{
+  color: #8d8f93;
+}

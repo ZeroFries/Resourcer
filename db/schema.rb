@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130805210112) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id"
     t.integer  "source_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20130805210112) do
     t.datetime "updated_at"
   end
 
-  add_index "bookmarks", ["source_id"], name: "index_bookmarks_on_source_id"
-  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
+  add_index "bookmarks", ["source_id"], name: "index_bookmarks_on_source_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "completed_sources", force: true do |t|
     t.integer  "user_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 20130805210112) do
     t.datetime "updated_at"
   end
 
-  add_index "completed_sources", ["source_id"], name: "index_completed_sources_on_source_id"
-  add_index "completed_sources", ["user_id"], name: "index_completed_sources_on_user_id"
+  add_index "completed_sources", ["source_id"], name: "index_completed_sources_on_source_id", using: :btree
+  add_index "completed_sources", ["user_id"], name: "index_completed_sources_on_user_id", using: :btree
 
   create_table "current_learning_paths", force: true do |t|
     t.integer  "user_id"
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20130805210112) do
     t.datetime "updated_at"
   end
 
-  add_index "current_learning_paths", ["learning_path_id"], name: "index_current_learning_paths_on_learning_path_id"
-  add_index "current_learning_paths", ["user_id"], name: "index_current_learning_paths_on_user_id"
+  add_index "current_learning_paths", ["learning_path_id"], name: "index_current_learning_paths_on_learning_path_id", using: :btree
+  add_index "current_learning_paths", ["user_id"], name: "index_current_learning_paths_on_user_id", using: :btree
 
   create_table "learning_paths", force: true do |t|
     t.string   "name"
@@ -57,9 +60,9 @@ ActiveRecord::Schema.define(version: 20130805210112) do
     t.integer  "learning_path_id"
   end
 
-  add_index "nodes", ["learning_path_id"], name: "index_nodes_on_learning_path_id"
-  add_index "nodes", ["skill_id"], name: "index_nodes_on_skill_id"
-  add_index "nodes", ["topic_id"], name: "index_nodes_on_topic_id"
+  add_index "nodes", ["learning_path_id"], name: "index_nodes_on_learning_path_id", using: :btree
+  add_index "nodes", ["skill_id"], name: "index_nodes_on_skill_id", using: :btree
+  add_index "nodes", ["topic_id"], name: "index_nodes_on_topic_id", using: :btree
 
   create_table "requirements", force: true do |t|
     t.integer "node_id"
@@ -75,8 +78,8 @@ ActiveRecord::Schema.define(version: 20130805210112) do
     t.integer  "source_id"
   end
 
-  add_index "skills", ["source_id"], name: "index_skills_on_source_id"
-  add_index "skills", ["topic_id"], name: "index_skills_on_topic_id"
+  add_index "skills", ["source_id"], name: "index_skills_on_source_id", using: :btree
+  add_index "skills", ["topic_id"], name: "index_skills_on_topic_id", using: :btree
 
   create_table "sources", force: true do |t|
     t.string   "name"
