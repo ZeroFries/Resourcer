@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+	before_filter :collect_learning_paths
+
 	def index
 		@topics = Topic.all
 		@topic_names = []
@@ -12,5 +14,9 @@ class TopicsController < ApplicationController
 		@topic = Topic.find params[:id]
 		@skills = @topic.skillz_hash
 		# figure out how to order skills
+	end
+
+	def collect_learning_paths
+		@learning_paths = LearningPath.all
 	end
 end

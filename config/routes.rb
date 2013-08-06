@@ -3,8 +3,8 @@ Resourcer::Application.routes.draw do
     resources :sources, only: [:show]
     resources :topics, only: [:show]
     resources :bookmarks, only: [:new, :create]
-    resources :completed_sources, only: [:create, :destroy]
-    resources :current_learning_path, only: [:create]
+    resources :completed_sources, only: [:show, :create, :destroy]
+    resources :current_learning_paths, only: [:create]
   end
 
   resources :topics

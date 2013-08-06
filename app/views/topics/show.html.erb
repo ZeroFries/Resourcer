@@ -28,9 +28,16 @@
 <% if current_user %>
 	<%= render "learning_path/learning_path" %>
 <% else %>
-	<button class="learning_path-choose"><%= link_to "Select a learning path", "/login" %></button>
+	<button class="learning_path-fake"><%= link_to "Select a learning path", "/login" %></button>
 <% end %>
 </aside>
+
+<!-- Choose Learning Path -->
+<ul class="choose-path-container">
+	<% @learning_paths.each do |path| %>
+		<li class="path-select" data-id=<%= path.id %>><%= path.name %></li>
+	<% end %>
+</ul>
 
 <!-- Flash info box skeleton -->
 

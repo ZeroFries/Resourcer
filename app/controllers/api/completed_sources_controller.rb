@@ -2,6 +2,16 @@ class Api::CompletedSourcesController < ApplicationController
 	respond_to :json
 	before_filter :force_login
 
+	def show
+		@user = current_user
+		@completed = CompletedSources.where(user_id: @user.id).where(source_id: params[:id]).first
+		if @completed.nil?
+			respond_with @completed, status: :not_found, location: "api/completed_sources"
+		else
+			respond_with @completed, location: "api/completed_sources"
+		end
+	end
+
 	def create
 		@user = current_user
 		@completed = @user.completed_sources.create(source_id: params[:id]) unless @user.nil?
@@ -11,8 +21,8 @@ class Api::CompletedSourcesController < ApplicationController
 	end
 
 	def destroy
-		@completed = CompletedSources.find(params[:id]).first
-		@completed.destroy
-		respond_with @completed
+		@user = current_user
+		CompletedSources.where(user_id: @user.id).where(source_id: params[:id]).destroy_all
+		render partial: 'learning_path/learning_path'
 	end
 end

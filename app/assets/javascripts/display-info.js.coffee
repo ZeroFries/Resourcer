@@ -19,9 +19,20 @@ $(document).ready( ->
 				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
 				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
 				$('.source-summary').text(data.summary)
-				$('body').bind('keydown', (e) ->
-					completeSource(id) if e.keyCode == 67
+
+				# complete source functionality
+				$.ajax(url: "/api/completed_sources/" + id).done( ->
+					# source has already been marked complete
+					$('body').bind('keydown', (e) ->
+						uncompleteSource(id) if e.keyCode == 78
+					)
+				).fail( ->
+					# source has not been marked as complete
+					$('body').bind('keydown', (e) ->
+						completeSource(id) if e.keyCode == 67
+					)
 				)
+
 			else
 				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px").css('opacity', 1)
 				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
@@ -48,11 +59,42 @@ $(document).ready( ->
 		infoBoxClose() if e.keyCode == 27
 	)
 
-	completeSource = (id) ->
+	refreshLearningPath = (id) ->
 		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
 			console.log data
 			$('.learning_path-container').html data
 		)
 
+	completeSource = (id) ->
+		$('body').bind('keydown', (e) ->
+				uncompleteSource(id) if e.keyCode == 78
+		)
+		refreshLearningPath(id)
 
+	uncompleteSource = (id) ->
+		$('body').bind('keydown', (e) ->
+				completeSource(id) if e.keyCode == 67
+		)
+		refreshLearningPath(id)
+
+	# Choose learning path
+	$(".learning_path-choose").click( ->
+		$('.choose-path-container').show()
+		$('.page-cover').addClass('fade')
+
+		$('.path-select').click( ->
+			id = $(this).data('id')
+			$.ajax({url: "api/current_learning_paths/", type: "POST", data: {id: id}}).done( ->
+				refreshLearningPath(id)
+			)
+			$('.choose-path-container').hide()
+			$('.page-cover').removeClass('fade')
+		)
+
+		$('body').keydown((e) ->
+			if e.keyCode == 27
+				$('.choose-path-container').hide()
+				$('.page-cover').removeClass('fade')
+		)
+	)
 )
