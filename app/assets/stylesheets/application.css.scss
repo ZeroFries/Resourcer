@@ -12,55 +12,6 @@
  *= require_tree .
  */
 
-@import "bootstrap";
-
-.social-icons img{
-  height: 30px;
-  width: 30px;
-}
-
-.social-icons{
-  position: absolute;
-  top: 26%;
-  right: 5%;
-}
-a{
-  color: white;
-  font-weight: 100;
-}
-
-// a:hover{
-//   text-decoration: none;
-//   color: white;
-// }
-
-// li i{
-//   float: right;
-//   margin: 0 3px;
-// }
-
-
-// /* Apply css when screen is between 660px and 1024px*/
-// @media all and (min-width: 660px) and (max-width: 1024px ) {
-
-// aside{
-//   background: red;
-// }
-// }
-
-// /* Apply css when screen is below 420px */
-// @media all and (max-width: 420px) {
-//   section, aside {
-//     float: none;
-//     width: auto;
-//   }
-// }
-
-// .row-fluid .sidebar {
-//   width: 13.89362% !important;
-//   margin-left: 1% !important;
-//   margin-right: -1% !important;
-// }
 
 
 

@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: ba03113dbee5d9e56b622507c78555446a7f6e43
-  branch: 3.0.0
-  specs:
-    anjlab-bootstrap-rails (3.0.0.rc1)
-      railties (>= 3.0)
-      sass (>= 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -163,7 +154,6 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -173,7 +163,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  anjlab-bootstrap-rails!
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
