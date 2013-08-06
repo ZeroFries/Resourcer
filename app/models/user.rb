@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :bookmarks
 	has_many :sources, through: :bookmarks
 	has_many :completed_sources
+	has_many :sources, through: :completed_sources
 	has_one :current_learning_path
 	
 	# validations
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
 	def completed_path_sources(lp)
 		# lp == learning_path
 		sources = lp.sources
-		complete = self.completed_sources
+		complete = self.sources
 		# return the intersection
 		complete & sources
 	end

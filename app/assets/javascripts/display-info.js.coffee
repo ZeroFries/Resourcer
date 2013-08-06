@@ -19,6 +19,9 @@ $(document).ready( ->
 				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
 				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
 				$('.source-summary').text(data.summary)
+				$('body').bind('keydown', (e) ->
+					completeSource(id) if e.keyCode == 67
+				)
 			else
 				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px").css('opacity', 1)
 				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
@@ -28,6 +31,7 @@ $(document).ready( ->
 
 	# show source close
 	infoBoxClose = ->
+		$('body').unbind('keydown')
 		$('.page-cover').removeClass('fade')
 		$('.info-container').removeClass('show')
 		$('.info-container').addClass('hide')
@@ -43,4 +47,12 @@ $(document).ready( ->
 	$('body').keydown((e) ->
 		infoBoxClose() if e.keyCode == 27
 	)
+
+	completeSource = (id) ->
+		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
+			console.log data
+			$('.learning_path-container').html data
+		)
+
+
 )

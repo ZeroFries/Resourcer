@@ -22,13 +22,13 @@
 </div>
 
 <!-- Learning Path -->
+<aside class="learning_path-container">
 <% if current_user %>
 	<%= render "learning_path/learning_path" %>
 <% else %>
-<aside class="learning_path-container">
 	<button class="learning_path-choose"><%= link_to "Select a learning path", "/login" %></button>
-</aside>
 <% end %>
+</aside>
 
 <div class="page-cover">
 </div>
