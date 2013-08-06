@@ -4,23 +4,27 @@
 </header>
 
 <!-- Skills nav -->
-<%= render "layouts/left_nav", categories: @skills.keys %>
-
+<div class="col-lg-3 sidebar">
+	<%= render "layouts/left_nav", categories: @skills.keys %>
+</div>
 <!-- Show all skills -->
-<div class="skills-container">
-	<% @skills.each do |skill_name, sources| %>
-		<article class="skill" id=<%= skill_name.gsub(' ', '') %>>
-			<h2 class="skill-name"><%= skill_name %></h2>
-			<ul class="sources-container">
-				<% sources.each do |source| %>
-					<li>
-						<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
-						<%= link_to source.name, source.url, target: "_blank" %>
-					</li>
-				<% end %>
-			</ul>
-		</article>
-		<% end %>
+<div class="col-lg-9">
+	<div class="skills-container">
+		<% @skills.each do |skill_name, sources| %>
+
+			<article class="skill" id=<%= skill_name.gsub(' ', '') %>>
+				<h2 class="skill-name"><%= skill_name %></h2>
+				<ul class="sources-container">
+					<% sources.each do |source| %>
+						<li>
+							<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
+							<%= link_to source.name, source.url, target: "_blank" %>
+						</li>
+					<% end %>
+				</ul>
+			</article>
+			<% end %>
+	</div>
 </div>
 
 <!-- Flash info box skeleton -->

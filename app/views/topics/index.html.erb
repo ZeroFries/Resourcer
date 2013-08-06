@@ -4,26 +4,29 @@
 
 
 <!-- Left topics nav-->
-<%= render "layouts/left_nav", categories: @topic_names %>
-
+<div class="col-lg-3">
+	<%= render "layouts/left_nav", categories: @topic_names %>
+</div>
 <!-- Show all topics -->
-<div class="topics-container">
-	<% @topics.each_with_index do |topic, i| %>
-		<article class="topic" id=<%= topic.name.gsub(' ', '') %>>
-			<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
-			<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
-			<ul class="skills-container">
-				<% topic.skillz_hash.keys.each do |skill_name| %>
-					<li><%= link_to skill_name, "/topics/#{topic.id}/##{skill_name.gsub(' ', '')}" %></li>
-				<% end %>
-			</ul>
-		</article>
-	<% end %>
+<div class="col-lg-9">
+	<div class="topics-container">
+		<% @topics.each_with_index do |topic, i| %>
+			<div class="topic" id=<%= topic.name.gsub(' ', '') %>>
+				<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
+				<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
+				<ul class="skills-container">
+					<% topic.skillz_hash.keys.each do |skill_name| %>
+						<li><%= link_to skill_name, "/topics/#{topic.id}/##{skill_name.gsub(' ', '')}" %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+	</div>
 </div>
 
 <button type="button" class="btn btn-success">Success</button>
 
-<!-- Learning Path -->
+<!-- Learning Path
 	<!-- render the learning path partial -->
 
 <div class="page-cover">
@@ -33,4 +36,4 @@
 	<button class="info-close" data-type="topics">X</button>
 	<h2 class="info-name"></h2>
 	<p class="info-description"></p>
-</div>
+</div> -->
