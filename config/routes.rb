@@ -16,6 +16,10 @@ Resourcer::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :bookmarks, only: [:index, :destroy]
 
+  namespace :admin do
+    resources :sources, only: [:index, :edit, :update]
+  end
+
   root to: "topics#index"
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"

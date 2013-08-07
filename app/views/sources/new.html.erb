@@ -1,6 +1,7 @@
 <div class="new-source-container">
 	<%= form_for [@topic, @skill, @source] do |f| %>
 		<%= f.text_field :name, placeholder: "Name" %>
-		<%= f.text_field :name, placeholder: "URL to the home page" %>
+		<%= f.text_field :url, placeholder: "URL to the home page" %>
+		<%= f.submit value: "Submit resource" %>
 	<% end %>
 </div>
