@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_only
-    redirect_to "/" unless @current_user.admin?
+    if current_user.nil?
+      redirect_to "/"
+    else
+      redirect_to "/" unless current_user.admin?
+    end
   end
 
-  helper_method :current_user, :force_login
+  helper_method :current_user, :force_login, :admin_only
 end

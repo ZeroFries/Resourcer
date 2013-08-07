@@ -17,7 +17,7 @@ Resourcer::Application.routes.draw do
   resources :bookmarks, only: [:index, :destroy]
 
   namespace :admin do
-    resources :sources, only: [:index, :edit, :update]
+    resources :sources, only: [:index, :edit, :update, :destroy]
   end
 
   root to: "topics#index"

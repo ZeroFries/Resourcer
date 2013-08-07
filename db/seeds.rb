@@ -20,7 +20,8 @@ by the Wikimedia Foundation and based on an openly editable model. The name \"Wi
 a portmanteau of the words wiki (a technology for creating collaborative websites, from 
 the Hawaiian word wiki, meaning \"quick\") and encyclopedia. Wikipedia's articles provide 
 links to guide the user to related pages with additional information.",
-image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png")
+image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png"),
+admin_approved?: true
 
 10.times do |i|
 	Skill.create topic: topic, source: wiki, name: "Skill #{i}"

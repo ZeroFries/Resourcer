@@ -1,0 +1,7 @@
+<ul>
+<% @sources.each do |source| %>
+	<li> <%= source.name %> -> <%= link_to source.url, target: "_blank" %> <br>
+		<%= link_to "Edit", edit_admin_source_path(source) %> | 
+		<%= link_to "Delete", admin_source_path(source), method: :delete %>
+<% end %>
+</ul>

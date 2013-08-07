@@ -1,5 +1,4 @@
 class SourcesController < ApplicationController
-  before_filter :admin_only, only: [:index, :edit, :update]
 
 	def show
 		@source = Source.find params[:id]
@@ -14,25 +13,10 @@ class SourcesController < ApplicationController
 	def create
 		@topic = Topic.find params[:topic_id]
 		@skill = Skill.find params[:skill_id]
-		@source = Skill.create topic: @topic, name: @skill.name, source: Source.create(source_params, admin_approved? = false)
-		# send email to admin? or find some other way to collect unapproved sources
+		@source = Skill.create topic: @topic, name: @skill.name, source: Source.create(source_params, admin_approved?: false)
+		redirect_to topic_path(@topic), notice: "Thanks for submitting a resource! It will be placed as soon as an admin fills out the details"
 	end
 
-	def edit
-	end
-
-	def index
-		# collection of unapproved resources which need fleshing out
-		@sources = Source.where admin_approved?: false
-	end
-
-	def update
-		@source = Source.find params[:id]
-		@source.admin_approved? = true
-	end
-
-	def destroy
-	end
 
 	private
 
