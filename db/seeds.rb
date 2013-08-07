@@ -10,6 +10,11 @@ Skill.destroy_all
 Source.destroy_all
 LearningPath.destroy_all
 User.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!(:users)
+ActiveRecord::Base.connection.reset_pk_sequence!(:skills)
+ActiveRecord::Base.connection.reset_pk_sequence!(:topics)
+ActiveRecord::Base.connection.reset_pk_sequence!(:learning_paths)
+ActiveRecord::Base.connection.reset_pk_sequence!(:sources)
 
 user = User.create name: "Zero", email: "sg@sg.com", password: "password", password_confirmation: "password", admin: true
 

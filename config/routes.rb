@@ -2,7 +2,7 @@ Resourcer::Application.routes.draw do
   namespace :api do
     resources :sources, only: [:show]
     resources :topics, only: [:show]
-    resources :bookmarks, only: [:new, :create]
+    resources :bookmarks, only: [:show, :create]
     resources :completed_sources, only: [:show, :create, :destroy]
     resources :current_learning_paths, only: [:show, :create]
   end

@@ -4,11 +4,13 @@ class Api::CompletedSourcesController < ApplicationController
 
 	def show
 		@user = current_user
-		@completed = CompletedSources.where(user_id: @user.id).where(source_id: params[:id]).first
+		@completed = CompletedSource.where(user_id: @user.id).where(source_id: params[:id]).first
 		if @completed.nil?
-			respond_with @completed, status: :not_found, location: "api/completed_sources"
+			respond_with json: {completed: false}, location: "api/completed_sources"
+			#respond_with @completed, status: :not_found, location: "api/completed_sources"
 		else
-			respond_with @completed, location: "api/completed_sources"
+			respond_with json: {completed: true}, location: "api/completed_sources"
+			#respond_with @completed, location: "api/completed_sources"
 		end
 	end
 

@@ -1,46 +1,10 @@
 $ = jQuery
 
 $(document).ready( ->
+	completed = false
+	bookmarked = false
 
-	# show info box
-	$('.info-opener').click( ->
-		$('.page-cover').addClass('fade')
-		$('.info-container').addClass('show')
-		$('.info-container').removeClass('hide')
-		type = $(this).data('type')
-		id = $(this).data('id')
-		# ajax in the source data
-		$.ajax(url: "/api/" + type + "/" + id).done((data) ->
-			# fill promise objects with data
-			if type == "sources"
-				$('.info-container').css("width", "50%").css("min-height", "25em").css("left", "25%").css("top", "25%").css("font-size", "16px").css('opacity', 1)
-				$('.source-img').attr('src', data.image_url)
-				$('.source-name').append("<a href=" + data.url + " target='_blank'>" + data.name + "</a>")
-				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
-				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
-				$('.source-summary').text(data.summary)
-
-				# complete source functionality
-				$.ajax(url: "/api/completed_sources/" + id).done( ->
-					# source has already been marked complete
-					$('body').bind('keydown', (e) ->
-						uncompleteSource(id) if e.keyCode == 78
-					)
-				).fail( ->
-					# source has not been marked as complete
-					$('body').bind('keydown', (e) ->
-						completeSource(id) if e.keyCode == 67
-					)
-				)
-
-			else
-				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px").css('opacity', 1)
-				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
-				$('.info-description').text(data.description)
-		)
-	)
-
-	# show source close
+	# close info box
 	infoBoxClose = ->
 		$('body').unbind('keydown')
 		$('.page-cover').removeClass('fade')
@@ -55,8 +19,53 @@ $(document).ready( ->
 	$('.info-close').click( ->
 		infoBoxClose()
 	)
-	$('body').keydown((e) ->
-		infoBoxClose() if e.keyCode == 27
+
+	# info box icons and hotkeys
+	infoBoxKeys = (completed, bookmarked, id) ->
+		# hot keys
+		$('body').bind('keydown', (e) ->
+			uncompleteSource(id) if completed and e.keyCode == 78 # N
+			completeSource(id) if !completed and e.keyCode == 67 # C
+			bookmarkSource(id) if !bookmarked and e.keyCode == 66 # B
+		)
+
+	# show info box
+	$('.info-opener').click( ->
+		$('.page-cover').addClass('fade')
+		$('.info-container').addClass('show')
+		$('.info-container').removeClass('hide')
+		$('body').bind('keydown', (e) ->
+			if e.keyCode == 27 # esc
+				infoBoxClose()
+				$('body').unbind('keydown')
+				$('.choose-path-container').hide()
+				$('.page-cover').removeClass('fade')
+		)
+		type = $(this).data('type')
+		id = $(this).data('id')
+		# ajax in the source data
+		$.ajax(url: "/api/" + type + "/" + id).done((data) ->
+			# fill promise objects with data
+			if type == "sources"
+				$('.info-container').css("width", "50%").css("min-height", "25em").css("left", "25%").css("top", "25%").css("font-size", "16px").css('opacity', 1)
+				$('.source-img').attr('src', data.image_url)
+				$('.source-name').append("<a href=" + data.url + " target='_blank'>" + data.name + "</a>")
+				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
+				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
+				$('.source-summary').text(data.summary)
+
+				# bookmarked or completed?
+				$.when($.ajax(url: "/api/completed_sources/" + id), $.ajax(url: "/api/bookmarks/" + id)).done((c, b) ->
+					completed = c[0].json.completed
+					bookmarked = b[0].json.bookmarked
+					infoBoxKeys(completed, bookmarked, id)
+				)
+
+			else
+				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px").css('opacity', 1)
+				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
+				$('.info-description').text(data.description)
+		)
 	)
 
 	refreshLearningPath = ->
@@ -66,19 +75,25 @@ $(document).ready( ->
 		)
 
 	completeSource = (id) ->
-		$('body').bind('keydown', (e) ->
-				uncompleteSource(id) if e.keyCode == 78
-		)
+		completed = true
+		infoBoxKeys(completed, bookmarked, id)
 		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
 			refreshLearningPath()
 		)
 
 	uncompleteSource = (id) ->
-		$('body').bind('keydown', (e) ->
-				completeSource(id) if e.keyCode == 67
-		)
+		completed = false
+		infoBoxKeys(completed, bookmarked, id)
 		$.ajax({url: "/api/completed_sources/" + id, type: "DELETE"}).done((data) ->
 			refreshLearningPath()
+		)
+
+	bookmarkSource = (id) ->
+		bookmarked = true
+		infoBoxKeys(completed, bookmarked, id)
+		$.ajax({url: "/api/bookmarks/", type: "POST", data: {id: id}}).done((data) ->
+			# add note functionality
+			console.log data
 		)
 
 	# Choose learning path
@@ -94,13 +109,6 @@ $(document).ready( ->
 			)
 			$('.choose-path-container').hide()
 			$('.page-cover').removeClass('fade')
-		)
-
-		$('body').keydown((e) ->
-			if e.keyCode == 27
-				$('body').unbind('keydown')
-				$('.choose-path-container').hide()
-				$('.page-cover').removeClass('fade')
 		)
 	)
 )
