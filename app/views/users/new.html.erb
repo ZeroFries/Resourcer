@@ -5,5 +5,10 @@
 	<%= f.text_field :email, placeholder: "Valid email address" %>
 	<%= f.password_field :password, placeholder: "Password" %>
 	<%= f.password_field :password_confirmation, placeholder: "Confirm password" %>
+	<% if @user.errors.any? %>
+	  <div class="errors">
+	  	<%= @user.errors.full_messages.first %>
+	  </div>
+	<% end %>
 	<%= f.submit value: "Sign Up" %>
 <% end %>

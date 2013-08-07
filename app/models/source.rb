@@ -2,7 +2,7 @@ class Source < ActiveRecord::Base
 	# properties: name, url, type (ex article, book), summary, image_url, price (1 -> $)
 
 	# associations
-	has_many :skills
+	has_many :skills, dependent: :destroy
 	has_many :topics, through: :skills
 	has_many :requirements
 	has_many :nodes, through: :requirements
@@ -15,4 +15,9 @@ class Source < ActiveRecord::Base
 	validates :price, presence: true, inclusion: (0..4), on: :update
 
 	# call backs
+
+	before_create do
+		self.admin_approved = false
+		return true
+	end
 end

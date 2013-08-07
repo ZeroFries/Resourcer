@@ -2,6 +2,11 @@
 	<%= form_for [@topic, @skill, @source] do |f| %>
 		<%= f.text_field :name, placeholder: "Name" %>
 		<%= f.text_field :url, placeholder: "URL to the home page" %>
+		<% if @source.errors.any? %>
+	  <div class="errors">
+	  	<%= @source.errors.full_messages.first %>
+	  </div>
+		<% end %>
 		<%= f.submit value: "Submit resource" %>
 	<% end %>
 </div>

@@ -9,19 +9,23 @@ Topic.destroy_all
 Skill.destroy_all
 Source.destroy_all
 LearningPath.destroy_all
+User.destroy_all
+
+user = User.create name: "Zero", email: "sg@sg.com", password: "password", password_confirmation: "password", admin: true
 
 topic = Topic.create name: "HTML", description: "Mark up language"
 topic2 = Topic.create name: "Ruby", description: "Beauty"
 
-wiki = Source.create(name: "Wikipedia", category: "Encyclopedia", price: 0,
+wiki = Source.create!(name: "Wikipedia", category: "Encyclopedia", price: 0,
 url: "http://www.wikipedia.org/",
 summary: "Wikipedia is a multilingual, web-based, free-content encyclopedia project operated 
 by the Wikimedia Foundation and based on an openly editable model. The name \"Wikipedia\" is 
 a portmanteau of the words wiki (a technology for creating collaborative websites, from 
 the Hawaiian word wiki, meaning \"quick\") and encyclopedia. Wikipedia's articles provide 
 links to guide the user to related pages with additional information.",
-image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png"),
-admin_approved?: true
+image_url: "http://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png")
+wiki.admin_approved = true
+wiki.save!
 
 10.times do |i|
 	Skill.create topic: topic, source: wiki, name: "Skill #{i}"

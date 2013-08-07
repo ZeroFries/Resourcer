@@ -7,7 +7,7 @@ class Admin::SourcesController < ApplicationController
 
 	def index
 		# collection of unapproved resources which need fleshing out
-		@sources = Source.where(admin_approved?: false)
+		@sources = Source.where(admin_approved: false)
 	end
 
 	def update
@@ -18,6 +18,7 @@ class Admin::SourcesController < ApplicationController
 	def destroy
 		@source = Source.find params[:id]
 		@source.destroy
+		redirect_to "/admin/sources"
 	end
 
 	private

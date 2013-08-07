@@ -16,10 +16,12 @@ class Topic < ActiveRecord::Base
 	def skillz_hash
 		hash = {}
 		self.skills.each do |skill|
-			hash[skill.name] = [] if hash[skill.name].nil?
-			# access sources by skill name
-			source = Source.find(skill.source_id)
-			hash[skill.name] << source if source.admin_approved?
+			unless skill.source_id.nil?
+				hash[skill.name] = [] if hash[skill.name].nil?
+				# access sources by skill name
+				source = Source.find(skill.source_id)
+				hash[skill.name] << source if source.admin_approved?
+			end
 		end
 		hash
 	end
