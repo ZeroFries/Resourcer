@@ -7,7 +7,11 @@ Resourcer::Application.routes.draw do
     resources :current_learning_paths, only: [:show, :create]
   end
 
-  resources :topics
+  resources :topics do
+    resources :skills, only: [:new] do
+      resources :sources, only: [:new, :create]
+    end
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :bookmarks, only: [:index, :destroy]

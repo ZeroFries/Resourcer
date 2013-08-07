@@ -9,9 +9,10 @@ class Source < ActiveRecord::Base
 	has_many :learning_paths, through: :nodes
 
 	# validations
-	validates :name, :summary, :category, presence: true
+	validates :name, presence: true
+	validates :summary, :category, presence: true, on: :update
 	validates :url, presence: true, uniqueness: { case_sensitive: false }
-	validates :price, presence: true, inclusion: (0..4)
+	validates :price, presence: true, inclusion: (0..4), on: :update
 
 	# call backs
 end

@@ -8,7 +8,7 @@ class TopicsFlowTest < ActionDispatch::IntegrationTest
   	assert find('.topics-container').has_link? "HTML"
 
   	find('.topic').click_link "HTML"
-  	assert_equal "/topics/1", current_path
+  	assert_equal topics_path(Topic.where(name: "HTML").first, current_path
   	assert find('.skills-container').has_content? "Beginner"
   end
 end

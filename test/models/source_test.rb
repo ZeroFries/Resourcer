@@ -11,9 +11,9 @@ class SourceTest < ActiveSupport::TestCase
   	assert !@source.save
   end
 
-  test "sources must have a url" do
+  test "sources must have a url before being posted" do
   	@source.url = ""
-
+    
   	assert !@source.save
   end
 

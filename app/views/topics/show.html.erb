@@ -19,6 +19,10 @@
 					</li>
 				<% end %>
 			</ul>
+
+			<div class="new-source-wrapper">
+				<%= link_to "Add a new resource", new_topic_skill_source_path(@topic, @topic.skills.first) %>
+			</div>
 		</article>
 		<% end %>
 </div>
