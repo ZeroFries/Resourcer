@@ -98,6 +98,7 @@ $(document).ready( ->
 
 		$('body').keydown((e) ->
 			if e.keyCode == 27
+				$('body').unbind('keydown')
 				$('.choose-path-container').hide()
 				$('.page-cover').removeClass('fade')
 		)
