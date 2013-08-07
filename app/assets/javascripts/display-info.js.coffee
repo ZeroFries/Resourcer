@@ -59,33 +59,38 @@ $(document).ready( ->
 		infoBoxClose() if e.keyCode == 27
 	)
 
-	refreshLearningPath = (id) ->
-		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
+	refreshLearningPath = ->
+		$.ajax(url: "/api/current_learning_paths/1").done((data) ->
 			console.log data
-			$('.learning_path-container').html data
+			$('.learning_path-wrapper').html data
 		)
 
 	completeSource = (id) ->
 		$('body').bind('keydown', (e) ->
 				uncompleteSource(id) if e.keyCode == 78
 		)
-		refreshLearningPath(id)
+		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
+			refreshLearningPath()
+		)
 
 	uncompleteSource = (id) ->
 		$('body').bind('keydown', (e) ->
 				completeSource(id) if e.keyCode == 67
 		)
-		refreshLearningPath(id)
+		$.ajax({url: "/api/completed_sources/" + id, type: "DELETE"}).done((data) ->
+			refreshLearningPath()
+		)
 
 	# Choose learning path
 	$(".learning_path-choose").click( ->
+		console.log "yo"
 		$('.choose-path-container').show()
 		$('.page-cover').addClass('fade')
 
 		$('.path-select').click( ->
 			id = $(this).data('id')
-			$.ajax({url: "api/current_learning_paths/", type: "POST", data: {id: id}}).done( ->
-				refreshLearningPath(id)
+			$.ajax({url: "/api/current_learning_paths/", type: "POST", data: {id: id}}).done( ->
+				refreshLearningPath()
 			)
 			$('.choose-path-container').hide()
 			$('.page-cover').removeClass('fade')

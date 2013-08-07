@@ -24,6 +24,7 @@
 <!-- Learning Path -->
 <aside class="learning_path-container">
 <% if current_user %>
+	<button class="learning_path-choose">Select a learning path</button>
 	<%= render "learning_path/learning_path" %>
 <% else %>
 	<button class="learning_path-fake"><%= link_to "Select a learning path", "/login" %></button>
