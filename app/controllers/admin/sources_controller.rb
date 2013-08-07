@@ -12,7 +12,11 @@ class Admin::SourcesController < ApplicationController
 
 	def update
 		@source = Source.find params[:id]
-		#@source.admin_approved? = true
+		if @source.update_attributes(source_params)
+			redirect_to "/admin/sources"
+		else
+			render :edit
+		end
 	end
 
 	def destroy
@@ -24,6 +28,6 @@ class Admin::SourcesController < ApplicationController
 	private
 
 		def source_params
-			params.require(:source).permit :name, :url, :image_url, :summary, :price, :category
+			params.require(:source).permit :name, :url, :image_url, :summary, :price, :category, :admin_approved
 		end
 end

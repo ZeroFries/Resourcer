@@ -1,5 +1,5 @@
 class Source < ActiveRecord::Base
-	# properties: name, url, type (ex article, book), summary, image_url, price (1 -> $)
+	# properties: name, url, category (ex article, book), summary, image_url, price (1 -> $)
 
 	# associations
 	has_many :skills, dependent: :destroy

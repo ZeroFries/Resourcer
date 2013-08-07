@@ -1,0 +1,18 @@
+<div class="new-source-container">
+	<%= form_for @source, url: admin_source_url(@source), html: { method: :put } do |f| %>
+		<%= f.text_field :name, placeholder: "Name" %>
+		<%= f.text_field :url, placeholder: "URL to the home page" %>
+		<%= f.text_area :summary, placeholder: "Summary" %>
+		<%= f.text_field :category, placeholder: "Category" %>
+		<%= f.text_field :price, placeholder: "Price 0-4" %>
+		<%= f.text_field :image_url, placeholder: "Image url" %>
+		<%= f.label :admin_approved %>
+		<%= f.check_box :admin_approved %>
+		<% if @source.errors.any? %>
+	  <div class="errors">
+	  	<%= @source.errors.full_messages.first %>
+	  </div>
+		<% end %>
+		<%= f.submit value: "Submit resource" %>
+	<% end %>
+</div>
