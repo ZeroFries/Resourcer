@@ -12,6 +12,7 @@
 	<h1><%= link_to "LOGO", root_url, class: "navbar-brand" %></h1>
 	<ul class="nav navbar-nav">
 		<% if current_user %>
+			<li><%= link_to "Bookmarks", bookmarks_path %></li>
 			<li><%= link_to "Logout", session_path(1), method: :delete %></li>
 		<% else %>
 			<li><%= link_to "Login", "/login" %></li>
