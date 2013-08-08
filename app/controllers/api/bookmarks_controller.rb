@@ -12,6 +12,11 @@ class Api::BookmarksController < ApplicationController
 		end
 	end
 
+	def index
+		setup_bookmarks_hash
+		render partial: 'bookmarks/list', locals: {bookmarks: @bookmarks}
+	end
+
 	def create
 		@user = current_user
 		@bookmark = @user.bookmarks.create(source_id: params[:id]) unless @user.nil?

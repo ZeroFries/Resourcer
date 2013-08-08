@@ -6,6 +6,11 @@ $(document).ready( ->
 
 	# close info box
 	infoBoxClose = ->
+		$('.info-opener').bind("click", ->
+			id = $(this).data('id')
+			type = $(this).data('type')
+			openBox(id, type)
+		)
 		$('body').unbind('keydown')
 		$('.page-cover').removeClass('fade')
 		$('.info-container').removeClass('show')
@@ -23,26 +28,31 @@ $(document).ready( ->
 	# info box icons and hotkeys
 	infoBoxKeys = (completed, bookmarked, id) ->
 		# hot keys
+		$('body').unbind('keydown')
 		$('body').bind('keydown', (e) ->
 			uncompleteSource(id) if completed and e.keyCode == 78 # N
 			completeSource(id) if !completed and e.keyCode == 67 # C
 			bookmarkSource(id) if !bookmarked and e.keyCode == 66 # B
-		)
-
-	# show info box
-	$('.info-opener').click( ->
-		$('.page-cover').addClass('fade')
-		$('.info-container').addClass('show')
-		$('.info-container').removeClass('hide')
-		$('body').bind('keydown', (e) ->
 			if e.keyCode == 27 # esc
 				infoBoxClose()
 				$('body').unbind('keydown')
 				$('.choose-path-container').hide()
 				$('.page-cover').removeClass('fade')
 		)
-		type = $(this).data('type')
+
+	$('.info-opener').bind("click", ->
 		id = $(this).data('id')
+		type = $(this).data('type')
+		openBox(id, type)
+	)
+
+	# show info box
+	openBox = (id, type) ->
+		console.log "yo"
+		$('.info-opener').unbind("click")
+		$('.page-cover').addClass('fade')
+		$('.info-container').addClass('show')
+		$('.info-container').removeClass('hide')
 		# ajax in the source data
 		$.ajax(url: "/api/" + type + "/" + id).done((data) ->
 			# fill promise objects with data
@@ -66,7 +76,6 @@ $(document).ready( ->
 				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
 				$('.info-description').text(data.description)
 		)
-	)
 
 	refreshLearningPath = ->
 		$.ajax(url: "/api/current_learning_paths/1").done((data) ->
@@ -74,18 +83,33 @@ $(document).ready( ->
 			$('.learning_path-wrapper').html data
 		)
 
+	refreshBookmarks = ->
+		$.ajax(url: "/api/bookmarks").done((data) ->
+			console.log data
+			$('.bookmarks-container').html data
+		)
+
+
 	completeSource = (id) ->
+		console.log completed
+		console.log bookmarked
 		completed = true
 		infoBoxKeys(completed, bookmarked, id)
 		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
-			refreshLearningPath()
+			if window.location.pathname == "/bookmarks"
+				refreshBookmarks()
+			else
+				refreshLearningPath()
 		)
 
 	uncompleteSource = (id) ->
 		completed = false
 		infoBoxKeys(completed, bookmarked, id)
 		$.ajax({url: "/api/completed_sources/" + id, type: "DELETE"}).done((data) ->
-			refreshLearningPath()
+			if window.location.pathname == "/bookmarks"
+				refreshBookmarks()
+			else
+				refreshLearningPath()
 		)
 
 	bookmarkSource = (id) ->

@@ -1,23 +1,5 @@
 <article class="bookmarks-container">
-	<h2 class="bookmarks-title">Your Bookmarks</h2>
-	<ul>
-	<% @bookmarks.each do |topic_name, complete_status| %>
-		<h3 class="bookmark-topic"><%= topic_name %></h3>
-			<% complete_status.each do |status, sources| %>
-				<h4 class="bookmark-complete-status"><%= status.to_s.titleize %></h4>
-				<ul>
-				<% sources.each do |source| %>
-					<li>
-						<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
-						<button class="unbookmark">X</button>
-						<%= link_to source.name, source.url, target: "_blank" %>
-					</li>
-				<% end %>
-				</ul>
-			<% end %>
-		</ul>
-	<% end %>
-	</ul>
+	<%= render "list", bookmarks: @bookmarks %>
 </article>
 
 <!-- Flash info box skeleton -->
