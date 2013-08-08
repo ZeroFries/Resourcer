@@ -1,0 +1,113 @@
+/* 
+basic grid layout:
+left nav: 12%
+gutter: 1%
+grid container: 70%;
+	gutter: 1%
+	grid block: 46.8%
+	gutter: 2%
+	grid block: 46.8%
+	gutter: 1%
+gutter: 1%
+learning path container: 16%
+*/
+
+// ----- MIXINS -----
+
+@mixin header{
+	width: 90%;
+	margin: 3em auto;
+	height: 5em;
+}
+
+@mixin grid-container{
+	display: inline-block;
+	width: 69.5%;	
+	margin: 1%;
+}
+
+@mixin grid-block{
+	width: 46%;
+	margin: 1%;
+}
+
+// ----- NAV and HEADER -----
+
+.logo{
+	display: inline-block;
+	width: 30%;
+}
+
+.navbar{
+	width: 100%;
+	height: 4em;
+	//background: black;
+	& a{
+		//color: white;
+	}
+	& .navbar-links{
+		float: right;
+		& li{
+			display: inline-block;
+			padding: 1em;
+		}
+	}
+}
+
+// ----- TOPICS INDEX and SHOW -----
+
+.container{
+	width: 100%;
+}
+
+.topics-header{
+	@include header;
+	& .topic-title{
+		width: 80%;
+		margin: auto;
+		text-align: center;
+	}
+	& h3{
+		text-align: center;
+	}
+}
+
+.left-nav{
+	display: inline-block;
+	width: 12%;
+	float: left;
+}
+
+.learning_path-container{
+	display: inline-block;
+	width: 15.8%;
+	float: right;
+}
+
+.topics-container{
+	@include grid-container;
+}
+
+.skills-container{
+	@include grid-container;
+}
+
+.block{
+	@include grid-block;
+	position: relative;
+	float: left;
+	padding: 1%;
+	& ul{
+		width: 90%;
+		padding-left: 1em;
+		& li{
+			height: 2em;
+			margin: 0.5em;
+		}
+	}
+}
+
+.topic-name{
+	display: inline-block;
+	width: 80%;
+}

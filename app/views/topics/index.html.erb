@@ -1,7 +1,11 @@
 <header class="topics-header">
 	<h1 class="topic-title">What do you want to know more about?</h1>
+	<%# if !current_user %>
+		<h3 class="pitch">If you're interested in web development, design, or how to build a startup, <%= link_to "sign up", "/signup" %> for free access <br /> to learning paths which will tell you exactly what you need to learn.</h3>
+	<%# end %>
 </header>
 
+<%= render "layouts/notice" %>
 
 <!-- Left topics nav-->
 <%= render "layouts/left_nav", categories: @topic_names %>
@@ -9,7 +13,7 @@
 <!-- Show all topics -->
 <div class="topics-container">
 	<% @topics.each_with_index do |topic, i| %>
-		<article class="topic" id=<%= topic.name.gsub(' ', '') %>>
+		<article class="topic block bg<%= (i%6) + 1 -%>" id=<%= topic.name.gsub(' ', '') %>>
 			<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
 			<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
 			<ul class="skills-container">

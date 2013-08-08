@@ -6,6 +6,7 @@ $(document).ready( ->
 
 	# close info box
 	infoBoxClose = ->
+		console.log "yo"
 		$('.info-opener').bind("click", ->
 			id = $(this).data('id')
 			type = $(this).data('type')
@@ -36,7 +37,6 @@ $(document).ready( ->
 			if e.keyCode == 27 # esc
 				infoBoxClose()
 				$('body').unbind('keydown')
-				$('.choose-path-container').hide()
 				$('.page-cover').removeClass('fade')
 		)
 
@@ -48,7 +48,6 @@ $(document).ready( ->
 
 	# show info box
 	openBox = (id, type) ->
-		console.log "yo"
 		$('.info-opener').unbind("click")
 		$('.page-cover').addClass('fade')
 		$('.info-container').addClass('show')
@@ -75,6 +74,12 @@ $(document).ready( ->
 				$('.info-container').css("width", "25%").css("min-height", "12.5em").css("left", "37.5%").css("top", "37.5%").css("font-size", "16px").css('opacity', 1)
 				$('.info-name').append("<a href=" + ('/topics/' + id) + " >" + data.name + "</a>")
 				$('.info-description').text(data.description)
+				$('body').bind('keydown', (e) ->
+					if e.keyCode == 27 # esc
+						infoBoxClose()
+						$('body').unbind('keydown')
+						$('.page-cover').removeClass('fade')
+				)
 		)
 
 	refreshLearningPath = ->
@@ -91,8 +96,6 @@ $(document).ready( ->
 
 
 	completeSource = (id) ->
-		console.log completed
-		console.log bookmarked
 		completed = true
 		infoBoxKeys(completed, bookmarked, id)
 		$.ajax({url: "/api/completed_sources/", type: "POST", data: {id: id}}).done((data) ->
@@ -122,9 +125,14 @@ $(document).ready( ->
 
 	# Choose learning path
 	$(".learning_path-choose").click( ->
-		console.log "yo"
 		$('.choose-path-container').show()
 		$('.page-cover').addClass('fade')
+
+		$('body').bind('keydown', (e) ->
+			if e.keyCode == 27
+				$('.choose-path-container').hide()
+				$('.page-cover').removeClass('fade')
+		)
 
 		$('.path-select').click( ->
 			id = $(this).data('id')

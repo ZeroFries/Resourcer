@@ -3,13 +3,15 @@
 	<h1 class="topic-title"><%= @topic.name %></h1>
 </header>
 
+<%= render "layouts/notice" %>
+
 <!-- Skills nav -->
 <%= render "layouts/left_nav", categories: @skills.keys %>
 
 <!-- Show all skills -->
 <div class="skills-container">
-	<% @skills.each do |skill_name, sources| %>
-		<article class="skill" id=<%= skill_name.gsub(' ', '') %>>
+	<% @skills.each_with_index do |(skill_name, sources), i| %>
+		<article class="skill block bg<%= (i%6) + 1 -%>" id=<%= skill_name.gsub(' ', '') %>>
 			<h2 class="skill-name"><%= skill_name %></h2>
 			<ul class="sources-container">
 				<% sources.each do |source| %>
@@ -20,9 +22,9 @@
 				<% end %>
 			</ul>
 
-			<div class="new-source-wrapper">
-				<%= link_to "Add a new resource", new_topic_skill_source_path(@topic, @topic.skills.first) %>
-			</div>
+			<form class="btn-new-source" action=<%= new_topic_skill_source_path(@topic, @topic.skills.first) %>>
+    		<input type="submit" value="+" title="Add a new resource">
+			</form>
 		</article>
 		<% end %>
 </div>
