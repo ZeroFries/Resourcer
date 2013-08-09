@@ -125,12 +125,12 @@ $(document).ready( ->
 
 	# Choose learning path
 	$(".learning_path-choose").click( ->
-		$('.choose-path-container').show()
+		$('.choose-path-container').addClass("slideLeft");
 		$('.page-cover').addClass('fade')
 
 		$('body').bind('keydown', (e) ->
 			if e.keyCode == 27
-				$('.choose-path-container').hide()
+				$('.choose-path-container').removeClass("slideLeft");
 				$('.page-cover').removeClass('fade')
 		)
 
@@ -139,7 +139,7 @@ $(document).ready( ->
 			$.ajax({url: "/api/current_learning_paths/", type: "POST", data: {id: id}}).done( ->
 				refreshLearningPath()
 			)
-			$('.choose-path-container').hide()
+			$('.choose-path-container').removeClass("slideLeft");
 			$('.page-cover').removeClass('fade')
 		)
 	)

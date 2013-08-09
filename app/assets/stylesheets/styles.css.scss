@@ -1,5 +1,31 @@
 // ----- MIXINS -----
 
+// ----- HEADERS and NAVS -----
+
+.navbar-links{
+	height: 4em;
+	padding: 0;
+	margin: 0;
+	margin-right: 2em;
+	& li{
+		height: 4em;
+		line-height: 4em;
+		& a{
+			display: inline-block;
+			height: 4em;
+			padding: 0 1em 0 1em;
+			&:hover{
+				background-color: lightgrey;
+			}
+		}
+	}
+}
+
+.topics-header{
+	background-color: black;
+	color: white;
+}
+
 // ----- GRID BLOCKS -----
 
 

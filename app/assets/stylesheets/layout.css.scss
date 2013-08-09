@@ -50,7 +50,6 @@ learning path container: 16%
 		float: right;
 		& li{
 			display: inline-block;
-			padding: 1em;
 		}
 	}
 }
@@ -66,14 +65,11 @@ learning path container: 16%
 	}
 }
 
-// ----- TOPICS INDEX and SHOW -----
-
-.container{
-	width: 100%;
-}
-
 .topics-header{
 	@include header;
+	width: 92%;
+	margin: 0 0 10px 0;
+	padding: 4%;
 	& .topic-title{
 		width: 80%;
 		margin: auto;
@@ -85,6 +81,11 @@ learning path container: 16%
 		margin: auto;
 		margin-top: 2em;
 	}
+}
+// ----- TOPICS INDEX and SHOW -----
+
+.container{
+	width: 100%;
 }
 
 .learning_path-container{

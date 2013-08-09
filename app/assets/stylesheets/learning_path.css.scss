@@ -3,15 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .choose-path-container{
-	display: none;
+	visibility: hidden;
 	list-style: none;
 	z-index: 50;
-	width: 50%;
+	width: 40%;
 	position: fixed;
 	left: 25%;
 	top: 20%;
 	& li{
+		width: 100%;
 		background-color: white;
+		padding: 1em;
+		margin-bottom: 1.5em;
+		text-align: center;
 		cursor: pointer;
+		border-radius: 10px;
+		&:hover{
+			background-color: lightgrey;
+		}
 	}
 }
