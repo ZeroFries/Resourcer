@@ -17,7 +17,7 @@ learning path container: 16%
 @mixin header{
 	width: 90%;
 	margin: 3em auto;
-	height: 5em;
+	min-height: 4em;
 }
 
 @mixin grid-container{
@@ -38,6 +38,7 @@ learning path container: 16%
 	width: 30%;
 }
 
+
 .navbar{
 	width: 100%;
 	height: 4em;
@@ -54,6 +55,17 @@ learning path container: 16%
 	}
 }
 
+.left-nav{
+	display: inline-block;
+	margin-left: 1%;
+	margin-top: 0.5%;
+	width: 11%;
+	float: left;
+	& li{
+		padding: 1.5em 2% 1em 0;
+	}
+}
+
 // ----- TOPICS INDEX and SHOW -----
 
 .container{
@@ -67,21 +79,20 @@ learning path container: 16%
 		margin: auto;
 		text-align: center;
 	}
-	& h3{
+	& .pitch{
 		text-align: center;
+		width: 65%;
+		margin: auto;
+		margin-top: 2em;
 	}
-}
-
-.left-nav{
-	display: inline-block;
-	width: 12%;
-	float: left;
 }
 
 .learning_path-container{
 	display: inline-block;
-	width: 15.8%;
+	width: 13.8%;
+	padding: 1%;
 	float: right;
+	margin-top: 1.5em;
 }
 
 .topics-container{
@@ -101,6 +112,7 @@ learning path container: 16%
 		width: 90%;
 		padding-left: 1em;
 		& li{
+			padding-left: 0.5em;
 			height: 2em;
 			margin: 0.5em;
 		}

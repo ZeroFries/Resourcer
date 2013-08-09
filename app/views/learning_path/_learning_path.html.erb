@@ -5,8 +5,9 @@
 		<% completed_nodes = current_user.completed_path_nodes(path) %>
 		<div class="current_path-container">
 			<h2 class="current_path-title"><%= path.name %></h2>
+			<% found_uncompleted_node = false %>
 			<% path.nodes.each do |node| %>
-				<div class="node <%= completed_nodes.include?(node) ? "complete" : "" -%>">
+				<div class="node <%= completed_nodes.include?(node) ? "complete" : (found_uncompleted_node = true and "in-progress" unless found_uncompleted_node) -%>">
 					<%= link_to node.topic.name, topic_path(node.topic) %>: 
 					<%= link_to node.skill.name, "/topics/#{node.topic.id}/##{node.skill.name.gsub(' ', '')}" %>
 					<ul>

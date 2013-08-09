@@ -88,3 +88,32 @@
 	bottom: 0.5em;
 	right: 0.5em;
 }
+
+// ----- NAVS and HEADERS -----
+
+.left-nav ul{
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	& a{
+		color: black;
+		&:hover{
+			color: grey;
+		}
+	}
+}
+
+// ----- LEARNING PATH -----
+
+.learning_path-container{
+	border-top: 2px solid lightgrey;
+	border-left: 2px solid lightgrey;
+}
+
+.node{
+	background-color: lightgrey;
+	border-radius: 5px;
+	padding: 1em;
+	& ul{
+		padding-left: 0;
+	}
+}
