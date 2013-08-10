@@ -1,6 +1,7 @@
 <!-- Header -->
 <header class="topics-header">
 	<h1 class="topic-title"><%= @topic.name %></h1>
+	<p class="pitch"><%= @topic.description %></p>
 </header>
 
 <%= render "layouts/notice" %>
@@ -16,7 +17,7 @@
 			<ul class="sources-container">
 				<% sources.each do |source| %>
 					<li>
-						<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
+						<button class="info-opener" title="Resource Info" data-type="sources" data-id=<%= source.id %>>?</button>
 						<%= link_to source.name, source.url, target: "_blank" %>
 					</li>
 				<% end %>

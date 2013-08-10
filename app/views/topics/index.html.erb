@@ -14,7 +14,7 @@
 <div class="topics-container">
 	<% @topics.each_with_index do |topic, i| %>
 		<article class="topic block bg<%= (i%6) + 1 -%>" id=<%= topic.name.gsub(' ', '') %>>
-			<button class='info-opener' data-type="topics" data-id=<%= topic.id %>>I</button>
+			<button class='info-opener' title="Topic Info" data-type="topics" data-id=<%= topic.id %>>?</button>
 			<h2 class="topic-name"><%= link_to topic.name, topic %></h2>
 			<ul class="skills-container">
 				<% topic.skillz_hash.keys.each do |skill_name| %>

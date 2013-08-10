@@ -7,7 +7,7 @@
 			<ul>
 			<% sources.each do |source| %>
 				<li>
-					<button class="info-opener" data-type="sources" data-id=<%= source.id %>>I</button>
+					<button class="info-opener" title="Resource Info" data-type="sources" data-id=<%= source.id %>>?</button>
 					<button class="unbookmark">X</button>
 					<%= link_to source.name, source.url, target: "_blank" %>
 				</li>

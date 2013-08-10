@@ -1,5 +1,27 @@
 // ----- MIXINS -----
 
+@mixin std-form{
+	margin: auto;
+	margin-top: 4em;
+	background-color: lightblue;
+	width: 40%;
+	border-radius: 10px;
+	min-height: 8em;
+	padding: 1em;
+}
+
+@mixin std-input{
+	margin: auto;
+	width: 60%;
+	border-radius: 5px;
+	margin-top: 2em;
+	height: 2em;
+	padding-left: 0.5em;
+	&:focus{
+		outline: lightblue;
+	}
+}
+
 // ----- HEADERS and NAVS -----
 
 .navbar-links{
@@ -39,25 +61,25 @@
 }
 // red
 .bg1{
-	background-color: rgb(213,131,110);
+	background-color: #E46E4F;
 	&:hover{
-		-webkit-box-shadow: inset 0 0 0 5px #e85c41;
-		box-shadow: inset 0 0 0 5px #e85c41;
+		-webkit-box-shadow: inset 0 0 0 5px #DD3030;
+		box-shadow: inset 0 0 0 5px #DD3030;
 	}
 	& li{
-		background-color: rgba(229,94,69, 0.8);
+		background-color: rgba(248, 81, 58, 0.8);
 	}
 }
 
 //yellow
 .bg2{
-	background-color: rgb(254,222,136);
+	background-color: #F5A43E;
 	&:hover{
-		-webkit-box-shadow: inset 0 0 0 5px #FECE4D;
-		box-shadow: inset 0 0 0 5px #FECE4D;
+		-webkit-box-shadow: inset 0 0 0 5px #E97842;
+		box-shadow: inset 0 0 0 5px #E97842;
 	}
 	& li{
-		background-color: rgba(254,206,77, 1);
+		background-color: #D86F29;
 	}
 }
 
@@ -142,4 +164,48 @@
 	& ul{
 		padding-left: 0;
 	}
+	&.in-progress{
+		background-color: gold;
+	}
+	&.complete{
+		background-color: lightgreen;
+	}
+	& a{
+		color: black;
+	}
+}
+
+.requirement{
+	&.complete{
+		text-decoration: line-through;
+	}
+}
+
+// ----- FORMS -----
+
+form.new_user{
+	@include std-form;
+}
+
+form.new_source{
+	@include std-form;
+}
+
+.new_user input{
+	@include std-input;
+}
+
+.new_source input{
+	@include std-input;
+}
+
+.not-a-member{
+	text-align: center;
+	width: 100%;
+}
+
+.pitch-text{
+	width: 50%;
+	margin: auto;
+	text-align: center;
 }

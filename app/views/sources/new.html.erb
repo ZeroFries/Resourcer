@@ -1,7 +1,9 @@
 <div class="new-source-container">
 	<%= form_for [@topic, @skill, @source] do |f| %>
-		<%= f.text_field :name, placeholder: "Name" %>
-		<%= f.text_field :url, placeholder: "URL to the home page" %>
+		<%= f.label :name, "Name of the resource" %>
+		<%= f.text_field :name, placeholder: "Example Article" %>
+		<%= f.label :url, "Full Address" %>
+		<%= f.text_field :url, placeholder: "http://www.example-blog.com/example-article" %>
 		<% if @source.errors.any? %>
 	  <div class="errors">
 	  	<%= @source.errors.full_messages.first %>

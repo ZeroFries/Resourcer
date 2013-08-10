@@ -40,6 +40,9 @@ learning path container: 16%
 
 
 .navbar{
+	position: relative;
+	background-color: white;
+	top: 0;
 	width: 100%;
 	height: 4em;
 	//background: black;
@@ -68,7 +71,7 @@ learning path container: 16%
 .topics-header{
 	@include header;
 	width: 92%;
-	margin: 0 0 10px 0;
+	margin: 4em 0 10px 0;
 	padding: 4%;
 	& .topic-title{
 		width: 80%;
