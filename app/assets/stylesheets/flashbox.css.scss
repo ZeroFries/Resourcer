@@ -15,7 +15,7 @@ html{
 }
 
 .info-container.show{
-	background-color: white;
+	background-color: rgba(236, 218, 218, 0.88);
 	width: 50%;
 	min-height: 25em;
 	border: 5px solid black;
@@ -57,5 +57,24 @@ html{
 	& img{
 		height: 1px;
 		width: 1px;
+	}
+}
+
+.source-hotkeys-container{
+	width: 40%;
+	position: fixed;
+	color: white;
+	top: 17%;
+	left: 30%;
+	display: none;
+	z-index: 100;
+	& button{
+		margin-left: 1em;
+		margin-right: 0.3em;
+		color: white;
+		background-color: #404243;
+		text-align: center;
+		border: 1px solid black;
+		box-shadow: 0px 1px 0px rgba(255,255,255,0.1) inset,0px 0px 1px 1px rgba(255,255,255,0.15);
 	}
 }
