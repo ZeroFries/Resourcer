@@ -153,26 +153,45 @@
 // ----- LEARNING PATH -----
 
 .learning_path-container{
-	border-top: 2px solid lightgrey;
-	border-left: 2px solid lightgrey;
+	border-top: 4px solid lightgrey;
+	border-left: 4px solid lightgrey;
+	background-color: rgba(111, 247, 122, 0.34);;
 }
 
 .node{
+	display: block;
 	background-color: lightgrey;
+	border: 2px solid grey;
 	border-radius: 5px;
 	padding: 1em;
+	margin-bottom: 1em;
 	& ul{
 		padding-left: 0;
 	}
 	&.in-progress{
-		background-color: gold;
+		background-color: #D43F3F;
+		border: 2px solid darkred;
 	}
 	&.complete{
 		background-color: lightgreen;
+		border: 2px solid darkgreen;
 	}
 	& a{
 		color: black;
 	}
+}
+
+.learning_path-choose{
+	-webkit-appearance: none;
+	margin: auto;
+	height: 3em;
+	background: black;
+	border-radius: 10px;
+	border: none;
+	letter-spacing: 3px;
+	font-size: 16px;
+	color: white;
+	margin-bottom: 10px;
 }
 
 .requirement{
