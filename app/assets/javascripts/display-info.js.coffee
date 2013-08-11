@@ -21,6 +21,7 @@ $(document).ready( ->
 		$('.source-img').attr('src', '')
 		$('.source-name').html('')
 		$('.source-info').html('')
+		$('.source-hotkeys-container').hide()
 		$('.info-container').css("width", "1px").css("min-height", "1px").css("left", "50%").css("top", "50%").css("font-size", "1px").css('opacity', 0)
 	$('.info-close').click( ->
 		infoBoxClose()
@@ -28,8 +29,10 @@ $(document).ready( ->
 
 	# info box icons and hotkeys
 	infoBoxKeys = (completed, bookmarked, id) ->
-		# hot keys
+		# reset
+		$('.source-hotkeys-container').html('')
 		$('body').unbind('keydown')
+		# hot keys
 		$('body').bind('keydown', (e) ->
 			uncompleteSource(id) if completed and e.keyCode == 78 # N
 			completeSource(id) if !completed and e.keyCode == 67 # C
@@ -39,6 +42,30 @@ $(document).ready( ->
 				$('body').unbind('keydown')
 				$('.page-cover').removeClass('fade')
 		)
+		# icons
+		$('.source-hotkeys-container').append("<button class='source-hotkey' id='esc'>Esc</button>")
+			.append("<span class='source-hotkey-description'> Close</span>")
+		$('#esc').bind('click', ->
+			infoBoxClose()
+		)
+		if completed
+			$('.source-hotkeys-container').append("<button class='source-hotkey' id='not-complete'>N</button>")
+				.append("<span class='source-hotkey-description'> Mark as not completed</span>")
+			$('#not-complete').bind('click', ->
+				uncompleteSource(id)
+			)
+		if !completed
+			$('.source-hotkeys-container').append("<button class='source-hotkey' id='complete'>C</button>")
+				.append("<span class='source-hotkey-description'> Mark as complete</span>")
+			$('#complete').bind('click', ->
+				completeSource(id)
+			)
+		if !bookmarked
+			$('.source-hotkeys-container').append("<button class='source-hotkey' id='bookmark'>B</button>")
+				.append("<span class='source-hotkey-description'> Bookmark</span>")
+			$('#bookmark').bind('click', ->
+				bookmarkSource(id)
+			)
 
 	$('.info-opener').bind("click", ->
 		id = $(this).data('id')
@@ -62,6 +89,7 @@ $(document).ready( ->
 				price = if data.price == 0 then "Free" else Array(data.price + 1).join '$'
 				$('.source-info').append("<ul><li>Type: " + data.category + "</li><li>Price: " + price + "</li></ul>")
 				$('.source-summary').text(data.summary)
+				$('.source-hotkeys-container').show()
 
 				# bookmarked or completed?
 				$.when($.ajax(url: "/api/completed_sources/" + id), $.ajax(url: "/api/bookmarks/" + id)).done((c, b) ->
