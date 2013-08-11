@@ -1,3 +1,6 @@
 A work in progress, and still un-named.
 
-A solution for the "I don't know what I don't know" problem. The toughest part of learning a new subject is figuring out where to begin, what to learn next
+A solution for the "I don't know what I don't know" problem. The toughest part of learning a new subject/field is figuring out where to begin, what to learn next, and getting a high level overview of exactly what it is you need to know. 
+
+This app will contain links to online and offline resources on varying subjects, organized by topic (example: Ruby, HTML, typography) and associated skill (example: beginner, testing, best practices).
+Curators will be able to create learning paths which contain a list of all the resources one should pursue in order to become knowledgable in a certain field or domain (example: Ruby on Rails web development).

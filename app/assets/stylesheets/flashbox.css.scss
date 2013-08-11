@@ -69,6 +69,8 @@ html{
 	display: none;
 	z-index: 100;
 	& button{
+		min-height: 2em;
+		min-width: 2em;
 		margin-left: 1em;
 		margin-right: 0.3em;
 		color: white;
