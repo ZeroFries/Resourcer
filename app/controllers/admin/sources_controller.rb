@@ -1,6 +1,12 @@
 class Admin::SourcesController < ApplicationController
 	before_filter :admin_only, only: [:index, :edit, :update]
+  #this is a comment, gjhg
 
+  #edited at 8:54 pm jhgkjgkjhgkjh who knows
+  #whats up
+  #duncan  
+  whats up
+  #klkjlk
 	def edit
 		@source = Source.find params[:id]
 	end
