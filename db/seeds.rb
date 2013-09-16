@@ -41,4 +41,4 @@ node = Node.create topic: topic, skill: topic.skills.first
 requirement = node.requirements.create source: wiki
 node2 = Node.create topic: topic2, skill: topic2.skills.first
 requirement2 = node2.requirements.create source: wiki
-learningpath = LearningPath.create name: "Ruby on Rails", nodes: [node, node 2]
+learningpath = LearningPath.create name: "Ruby on Rails", nodes: [node, node, 2]
